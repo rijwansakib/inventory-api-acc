@@ -1,4 +1,5 @@
 //create Product
+const { query } = require("express");
 const { getProductService, createProductService, updateProductService, deleteProductService } = require("../services/Product.services")
 
 exports.createProduct = async (req, res, next) => {
@@ -50,6 +51,14 @@ exports.getProducts = async (req, res, next) => {
     if (req.query.fields) {
       const fields = req.query.fields.split(',').join(' ')
       queries.fields = fields
+    }
+
+    //pagination
+    if(req.query.page){
+      const {page=1,limit=10}=req.query;
+      const skip=(page-1)*parseInt(limit)
+      queries.skip=skip;
+      queries.limit=parseInt(limit)
     }
 
 
