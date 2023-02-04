@@ -1,70 +1,66 @@
 const mongoose = require("mongoose")
-//schema Desgin
+const { ObjectId } = mongoose.Schema.Types;
+const {validator }= require('validator')
+//schema Desgin 
 
 const productSchema = mongoose.Schema({
     name: {
         type: String,
+        trim:true,
         unique: true,
         required: [true, "name required."],
+        lowercase:true,
     },
     description: {
         type: String,
         require: true
 
     },
-    price: {
-        type: Number,
-        required: true,
-        min: 0
-    },
     unit: {
         type: String,
         required: true,
         enum: {
-            values: ['kg', 'liter', 'pcs'],
-            message: "unit cont't be {value} must be kg/liter/pcs"
+            values: ['kg', 'liter', 'pcs','bag'],
+            message: "unit cont't be {value} must be kg/liter/pcs/bag"
         }
     },
-    quantity: {
-        type: Number,
-        required: true,
-        min: [0, "quantity can't be negative"],
-        validate: {
-            validator: (value) => {
-                const isIntiger = Number.isInteger(value);
-                if (isIntiger) {
-                    return true
-                } else {
+    imageURLs:[{
+        type:String,
+        require:true,
+        validate:{
+            validator:(value)=>{
+                if(Array.isArray(value)){
                     return false
                 }
-            }
-        },
-        message: "quntity must be an integer"
 
-    },
-    status: {
+                let isvalide=true;
+                value.forEach(url=> {
+                    if(validator.isURL(url)){
+                        isvalide= false
+                    }
+                    
+                });
+                return isvalide; 
+            },
+            message: 'please provide valid image url'
+        }
+    }],
+    catagorires: {
         type: String,
         required: true,
-        enum: {
-            values: ["in-stock", "out-of-stock", "discontinude"],
-            message: "unit cont't be {value} must be in-stock/out-of-stock/discontinude"
+    },
+    brand:{
+        name:{
+            type:String,
+            require:true
+        },
+        id:{
+            type: ObjectId,
+            ref:'Brand',
+            require:'true'
         }
     },
-    // supplire:{
-    //   type:mongoose.Schema.Types.ObjectId,
-    //   ref:'supplire'
-
-    // },
-
-    // catagorires:[{
-    //   name:{
-    //    type:String,
-    //   required:true,
-    //   },
-    //   _id:mongoose.Schema.Types.ObjectId,
-
-
-    // }], 
+    
 }, {
     timestamps: true
 })

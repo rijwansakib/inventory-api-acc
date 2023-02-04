@@ -1,5 +1,5 @@
 const { Query } = require('mongoose');
-const Product = require('../models/Product')
+const Product = require('../models/Product').default
 
 
 
@@ -13,7 +13,7 @@ exports.getProductService = async (filters, queries) => {
         .select(queries.fields)
         .sort(queries.sortBy)
     const totalProduct = await Product.countDocuments(filters)
-    return { products ,totalProduct};
+    return { products, totalProduct };
 }
 
 
