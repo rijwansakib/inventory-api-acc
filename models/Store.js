@@ -9,18 +9,26 @@ const storeSchema = mongoose.Schema({
         trim: true,
         require: [true, 'please provide a store name'],
         lowercase: true,
-        enum:{
-            values:['dhaka','chattrogram','rajshahi','khulna','rangpur','mymenshing','baridhal','sylhet'],
-            message:'{VALUE} is not valid name'
+        enum: {
+            values: [
+                'dhaka',
+                'chattrogram',
+                'rajshahi',
+                'khulna',
+                'rangpur',
+                'mymenshing',
+                'baridhal',
+                'sylhet'],
+            message: '{VALUE} is not valid name'
         }
     },
     description: String,
-    manager:{
-        name:String,
-        contactNumber:String,
-        id:{
+    manager: {
+        name: String,
+        contactNumber: String,
+        id: {
             type: ObjectId,
-            ref:'user'
+            ref: 'user'
         }
     },
     status: {
@@ -35,4 +43,4 @@ const storeSchema = mongoose.Schema({
 
 const Store = mongoose.model("Store", storeSchema)
 
-module.exports = Store
+module.exports = Store;

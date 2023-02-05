@@ -7,6 +7,7 @@ const categorySchema=mongoose.Schema({
         type:String,
         trim:true,
         require: [true,'please provide a category name'],
+        unique: true,
         lowercase:true
     },
     description:String,
