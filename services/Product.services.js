@@ -1,5 +1,5 @@
 const { Query } = require('mongoose');
-const Product = require('../models/Product').default
+const Product = require('../models/Product')
 
 
 
