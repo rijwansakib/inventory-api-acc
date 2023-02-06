@@ -17,6 +17,8 @@ const categoryRoute = require('./routes/category.route')
 
 //stock route
 const stockRoute = require('./routes/stock.route')
+
+//store route
 const storeRoute = require('./routes/store.route')
 
 
@@ -28,4 +30,4 @@ app.use('/api/v1/category', categoryRoute);
 app.use('/api/v1/stock', stockRoute);
 app.use('/api/v1/store', storeRoute);
 
-module.exports =app
+module.exports = app

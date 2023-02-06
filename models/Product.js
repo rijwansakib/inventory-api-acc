@@ -27,25 +27,25 @@ const productSchema = mongoose.Schema({
     imageURLs:[{
         type:String,
         require:true,
-        validate:{
-            validator:(value)=>{
-                if(Array.isArray(value)){
-                    return false
-                }
+        // validate:{
+        //     validator:(value)=>{
+        //         if(Array.isArray(value)){
+        //             return false
+        //         }
 
-                let isvalide=true;
-                value.forEach(url=> {
-                    if(validator.isURL(url)){
-                        isvalide= false
-                    }
+        //         let isvalide=true;
+        //         value.forEach(url=> {
+        //             if(validator.isURL(url)){
+        //                 isvalide= false
+        //             }
                     
-                });
-                return isvalide; 
-            },
-            message: 'please provide valid image url'
-        }
+        //         });
+        //         return isvalide; 
+        //     },
+        //     message: 'please provide valid image url'
+        // }
     }],
-    catagorires: {
+    category: {
         type: String,
         required: true,
     },

@@ -22,10 +22,10 @@ const brandSchema= new mongoose.Schema({
         validate:[validator.isURL,"please provide a valid url"]
     },
     location:String,
-    product:{
+    products:[{
         type:ObjectId,  
         ref:"Product"
-    },
+    }],
     suppliers:[{
         name:String,
         ContactNumber:String,

@@ -4,11 +4,11 @@ const ObjectId = mongoose.Schema.Types
 
 const categorySchema=mongoose.Schema({
     name:{
-        type:String,
-        trim:true,
-        require: [true,'please provide a category name'],
+        type: String,
+        trim: true,
         unique: true,
-        lowercase:true
+        required: [true, "name required."],
+        lowercase: true,
     },
     description:String,
     imageURLs:{
