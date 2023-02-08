@@ -27,23 +27,7 @@ const productSchema = mongoose.Schema({
     imageURLs:[{
         type:String,
         require:true,
-        // validate:{
-        //     validator:(value)=>{
-        //         if(Array.isArray(value)){
-        //             return false
-        //         }
-
-        //         let isvalide=true;
-        //         value.forEach(url=> {
-        //             if(validator.isURL(url)){
-        //                 isvalide= false
-        //             }
-                    
-        //         });
-        //         return isvalide; 
-        //     },
-        //     message: 'please provide valid image url'
-        // }
+       //validate: [validator.imageURLs,"plase provide valid url(s)"]
     }],
     category: {
         type: String,

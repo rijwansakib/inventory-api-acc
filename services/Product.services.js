@@ -34,6 +34,8 @@ exports.createProductService = async (data) => {
     return product;
 }
 
+//update product
+
 exports.updateProductService = async (productId, data) => {
     const result = await Product.updateOne({
         _id: productId
@@ -44,6 +46,9 @@ exports.updateProductService = async (productId, data) => {
     })
     return result;
 }
+
+//delete product
+
 exports.deleteProductService = async (productId) => {
     const result = await Product.deleteOne({
         _id: productId

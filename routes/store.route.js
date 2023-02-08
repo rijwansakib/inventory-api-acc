@@ -7,8 +7,8 @@ router
     .get(storeController.getStores)
     .post(storeController.createStore);
 
-router.
-    route("/:id")
+router
+    .route("/:id")
     .get(storeController.getStoreById)
 
 module.exports = router;
