@@ -9,6 +9,7 @@ router
 
 router
     .route("/:id")
+    .get(stockController.getStockrById)
     .patch(stockController.updateStock)
     .delete(stockController.deleteStock)
     

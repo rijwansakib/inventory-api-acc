@@ -48,7 +48,7 @@ const stockSchema = mongoose.Schema({
     },
     catagorires: {
         type: String,
-        required: true,
+        //required: true,
     },
     brand: {
         name: {

@@ -17,7 +17,7 @@ const storeSchema = mongoose.Schema({
                 'khulna',
                 'rangpur',
                 'mymenshing',
-                'baridhal',
+                'barishal',
                 'sylhet'],
             message: '{VALUE} is not valid name'
         }
