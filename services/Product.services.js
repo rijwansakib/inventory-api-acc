@@ -42,7 +42,7 @@ exports.updateProductService = async (productId, data) => {
     }, {
         $set: data
     }, {
-        runValidator: true
+       // runValidator: true
     })
     return result;
 }
