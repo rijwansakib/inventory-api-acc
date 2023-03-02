@@ -25,6 +25,10 @@ const storeRoute = require('./routes/store.route')
 
 const supplierRoute=require('./routes/supplier.route')
 
+//userRoute
+
+const userRoute = require("./routes/user.route")
+
 
 
 //post data into database
@@ -34,5 +38,6 @@ app.use('/api/v1/category', categoryRoute);
 app.use('/api/v1/stock', stockRoute);
 app.use('/api/v1/store', storeRoute);
 app.use('/api/v1/supplier', supplierRoute);
+app.use('/api/v1/user', userRoute);
 
 module.exports = app

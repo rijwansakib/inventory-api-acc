@@ -1,8 +1,6 @@
 const mongoose = require("mongoose");
-const validator = require("validator");
-const crypto = require("crypto");
-
 const bcrypt = require("bcryptjs");
+const validator = require('validator');
 
 const userSchema = mongoose.Schema(
   {
@@ -21,23 +19,20 @@ const userSchema = mongoose.Schema(
         validator: (value) =>
           validator.isStrongPassword(value, {
             minLength: 6,
-            minLowercase: 3,
-            minNumbers: 1,
-            minUppercase: 1,
-            minSymbols: 1,
           }),
         message: "Password {VALUE} is not strong enough.",
       },
+      
     },
     confirmPassword: {
       type: String,
-      required: [true, "Please confirm your password"],
       validate: {
         validator: function (value) {
           return value === this.password;
         },
         message: "Passwords don't match!",
       },
+      //required: [true],
     },
 
     role: {
@@ -73,7 +68,7 @@ const userSchema = mongoose.Schema(
     },
     status: {
       type: String,
-      default: "inactive",
+      default: "active",
       enum: ["active", "inactive", "blocked"],
     },
 
@@ -88,6 +83,7 @@ const userSchema = mongoose.Schema(
     timestamps: true,
   }
 );
+
 
 userSchema.pre("save", function (next) {
   if (!this.isModified("password")) {
@@ -110,18 +106,18 @@ userSchema.methods.comparePassword = function (password, hash) {
   return isPasswordValid;
 };
 
-userSchema.methods.generateConfirmationToken = function () {
-  const token = crypto.randomBytes(32).toString("hex");
+// userSchema.methods.generateConfirmationToken = function () {
+//   const token = crypto.randomBytes(32).toString("hex");
 
-  this.confirmationToken = token;
+//   this.confirmationToken = token;
 
-  const date = new Date();
+//   const date = new Date();
 
-  date.setDate(date.getDate() + 1);
-  this.confirmationTokenExpires = date;
+//   date.setDate(date.getDate() + 1);
+//   this.confirmationTokenExpires = date;
 
-  return token;
-};
+//   return token;
+// };
 
 const User = mongoose.model("User", userSchema);
 

@@ -34,7 +34,7 @@ const stockSchema = mongoose.Schema({
     imageURLs: [{
         type: String,
         require: true,
-        validate: [validator.isURL,"plase provide valid url(s)"]
+        //validate: [validator.isURL,"plase provide valid url(s)"]
     }],
     price:{
         type:Number,
