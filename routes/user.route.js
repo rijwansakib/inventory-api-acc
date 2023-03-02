@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 // midle ware
 const userController = require('../controllers/user.controller');
-//const verifyToken = require("../middleware/verifyToken");
+const verifyToken = require("../middleware/verifyToken");
 
 
 router.route("/signup")
@@ -11,7 +11,7 @@ router.route("/signup")
 
 router.post("/login", userController.login);
 
-// router.get("/me", verifyToken, userController.getMe);
+router.get("/me",verifyToken,userController.getme);
 
 
 module.exports = router;
